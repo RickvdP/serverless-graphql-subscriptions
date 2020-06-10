@@ -40,7 +40,7 @@ export async function handler(event) {
 
 		const { query: rawQuery, variables, operationName } = operation.payload
 		const graphqlDocument = parse(rawQuery)
-		const operationAST = getOperationAST(graphqlDocument, operation.operationName || '')
+		const operationAST = getOperationAST(graphqlDocument, operationName || '')
 
 		if(!operationAST || operationAST.operation !== 'subscription') {
 			await Subscriber.sendMessage({
